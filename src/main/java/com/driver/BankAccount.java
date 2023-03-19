@@ -115,20 +115,22 @@ import java.util.HashSet;public class BankAccount {
         {
             l++;
         }
-            char temp=chars[l];
+
+        if(l>r)
+            return "-1";
+
+        char temp=chars[l];
             chars[l]=chars[r];
             chars[r]=temp;
 
          ans=String.valueOf(chars);
 
          if(l>r)
-             break;
-
-
+             return "-1";
 
     }
 
-    Accounts.add(ans);
+
 
     return ans;
   }
