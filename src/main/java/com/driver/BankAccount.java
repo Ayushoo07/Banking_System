@@ -55,7 +55,7 @@ public class BankAccount {
     {
         double remBalance=this.balance-amount;
 
-        if(remBalance<this.minBalance)
+        if(remBalance<0 ||remBalance<this.minBalance)
             throw new Exception("Insufficient Balance");
         else
             this.balance=remBalance;

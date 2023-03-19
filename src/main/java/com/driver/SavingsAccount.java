@@ -29,7 +29,6 @@ public class SavingsAccount extends BankAccount{
         }
         else
         {
-            this.maxWithdrawalLimit = limit;
             this.setBalance(this.getBalance()-amount);
         }
 
