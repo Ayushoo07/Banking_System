@@ -34,7 +34,7 @@ public class BankAccount {
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
 
-        String accountNumber=generate(digits,sum);
+        String accountNumber=generate(sum,digits);
 
         if(accountNumber.equals("-1"))
         {
