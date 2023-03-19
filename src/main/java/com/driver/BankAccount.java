@@ -1,11 +1,13 @@
 package com.driver;
 
 
-public class BankAccount {
+import java.util.HashSet;public class BankAccount {
 
     private String name;
     private double balance;
     private double minBalance;
+
+    HashSet<String> Accounts = new HashSet<>();
 
     public String   getName() {
         return name;
@@ -50,6 +52,7 @@ public class BankAccount {
         //add amount to balance
 
     }
+
 
     public void withdraw(double amount) throws Exception
     {
@@ -97,6 +100,35 @@ public class BankAccount {
         }
       }
     }
+      int l=0;
+      int r=ans.length()-1;
+    while(Accounts.contains(ans))
+    {
+
+
+        char[] chars=ans.toCharArray();
+        while(l==0 && chars[r]==0 && l<r)
+        {
+            r--;
+        }
+        while(l<r && chars[l]==chars[r])
+        {
+            l++;
+        }
+            char temp=chars[l];
+            chars[l]=chars[r];
+            chars[r]=temp;
+
+         ans=String.valueOf(chars);
+
+         if(l>r)
+             break;
+
+
+
+    }
+
+    Accounts.add(ans);
 
     return ans;
   }
