@@ -29,7 +29,7 @@ public class SavingsAccount extends BankAccount{
             throw new Exception("Insufficient Balance");
         }
 
-        this.maxWithdrawalLimit=this.maxWithdrawalLimit-amount;
+       // this.maxWithdrawalLimit=this.maxWithdrawalLimit-amount;
         this.setBalance(this.getBalance()-amount);
 
 
