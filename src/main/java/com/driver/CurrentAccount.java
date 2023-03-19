@@ -14,9 +14,9 @@ public class CurrentAccount extends BankAccount{
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception
     {
         super(name,balance,5000.00);
-        this.tradeLicenseId=tradeLicenseId.toUpperCase();
+        this.tradeLicenseId=tradeLicenseId;
 
-        if(this.getBalance()<this.getMinBalance())
+        if(balance<5000)
             throw new Exception("Insufficient Balance");
 
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
@@ -29,19 +29,34 @@ public class CurrentAccount extends BankAccount{
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
 
-        String validId=isValid(this.tradeLicenseId);
-
-        if(validId.equals("-1"))
+        boolean flag = false;
+        int n=this.tradeLicenseId.length();
+        for(int i=1;i<n;i++)
         {
-            throw new Exception("Valid License can not be generated");
+            if(this.tradeLicenseId.charAt(i-1) == this.tradeLicenseId.charAt(i))
+            {
+                flag=true;
+                break;
+            }
         }
-        else
+
+        if(flag)
         {
-            this.tradeLicenseId=validId;
+
+            String validId=makeValid(this.tradeLicenseId);
+
+            if(validId.equals("-1"))
+            {
+                throw new Exception("Valid License can not be generated");
+            }
+            else
+            {
+                this.tradeLicenseId=validId;
+            }
         }
 
     }
-    public  String isValid(String str)
+    public  String makeValid(String str)
     {
         int[] freq=new int[26];
 
