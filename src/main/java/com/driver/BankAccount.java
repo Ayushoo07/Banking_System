@@ -56,12 +56,14 @@ import java.util.HashSet;public class BankAccount {
 
     public void withdraw(double amount) throws Exception
     {
-        double remBalance=this.balance-amount;
-
-        if(remBalance<0 ||remBalance<this.minBalance)
+        if(this.balance-amount<this.minBalance)
+        {
             throw new Exception("Insufficient Balance");
+        }
         else
-            this.balance=remBalance;
+        {
+            this.balance -= amount;
+        }
 
 
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
