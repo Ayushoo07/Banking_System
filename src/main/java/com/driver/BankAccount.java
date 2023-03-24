@@ -32,15 +32,25 @@ import java.util.HashSet;public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-
-        String accountNumber=generate(sum,digits);
-
-        if(accountNumber.equals("-1"))
-        {
-            throw new Exception("Account Number can not be generated");
-        }
-
-        return accountNumber;
+//Each digit of an account number can lie between 0 and 9 (both inclusive)
+      //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
+      //If it is not possible, throw "Account Number can not be generated" exception
+      if(sum>9*digits)
+          throw new Exception( "Account Number can not be generated");
+      StringBuilder stringBuilder = new StringBuilder();
+      for(int i=0;i<digits;i++)
+      {
+          if(sum>=9)
+          {
+              stringBuilder.append('9');
+              sum-=9;
+          }
+          else {
+              stringBuilder.append((char)('0'+sum));
+              sum=0;
+          }
+      }
+      return stringBuilder.toString();
     }
 
     public void deposit(double amount)
@@ -67,39 +77,5 @@ import java.util.HashSet;public class BankAccount {
 
     }
 
-  private String generate(int S, int D)
-  {
-    if ((9 * D) < S) return "-1";
-
-    String ans = "";
-    for (int i = D - 1; i >= 0; i--)
-    {
-      if (S > 9)
-      {
-        ans = "9" + ans;
-        S = S - 9;
-      }
-      else
-      {
-        if (i == 0)
-        {
-          ans = S + "" + ans;
-        }
-        else
-        {
-          ans = (int) (S - 1) + "" + ans;
-          i--;
-          while (i != 0)
-          {
-            ans = "0" + ans;
-            i--;
-          }
-          ans = "1" + ans;
-          break;
-        }
-      }
-    }
-    return ans;
-  }
 
 }
